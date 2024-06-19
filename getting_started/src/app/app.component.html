@@ -1,0 +1,21 @@
+<!-- 
+<app-add-people (onAdd)="addNewPerson($event)" ></app-add-people>
+<app-display [people]="peoples" (onDelete)="deletePerson($event)" ></app-display> -->
+<!-- 
+<p>{{title | uppercase | lowercase}}</p>
+
+<p>{{todaysDate | date:'d -MM -YYYY -- HH- mm' | uppercase}}</p>
+<p>{{money | currency:'KSH '}}</p>
+<p> {{percent|percent}}</p> -->
+
+<!-- <input [(ngModel)]="searchTerm"/>
+
+<button (click)="addProduct()">Add Keyboard</button>
+
+
+<p>{{greeting|async}}</p> -->
+
+<app-product [products]="products">
+    <!-- <h1> My Products Page</h1> -->
+</app-product>
+<button (click)="addProduct()">Change</button>
