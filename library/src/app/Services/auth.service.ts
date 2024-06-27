@@ -9,15 +9,22 @@ export class AuthService {
 
   private isLoggedIn=false;
 
-  login(){
-    this.isLoggedIn=true
+  logout(){
+    localStorage.clear()
   }
 
-  logout(){
-    this.isLoggedIn=false
+  getRole(){
+    //backend will have a protected route takes nothing but based on token it will return the role.
   }
 
   showStatus(){
-    return this.isLoggedIn
+   const token =localStorage.getItem('token') as string
+   if(token){
+    this.isLoggedIn=true
+    return true
+   }
+
+   this.isLoggedIn=false
+   return false
   }
 }
