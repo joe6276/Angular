@@ -14,6 +14,8 @@ export class BookService {
 
   getBooks():Observable<Book[]>{
     const token = localStorage.getItem('token')as string
-    return this.http.get<Book[]>(this.BASE_URL)
+    return this.http.get<Book[]>(this.BASE_URL, {
+      
+    })
   }
 }
