@@ -44,9 +44,9 @@
 </section>
                                       
 
-<div class="app" *ngIf="blogs.length">
+<div class="app" *ngIf="(blogs$|async)">
               
-  <div class="item" *ngFor="let blog of blogs" [routerLink]="['/blog', blog.Id]">
+  <div class="item" *ngFor="let blog of blogs$ | async" [routerLink]="['/blog', blog.Id]">
       <img src={{blog.ImageUrl}} alt={{blog.Heading}}>
       <h1>{{blog.Heading}}</h1>
       <p><{{blog.Name}}/></p>
@@ -54,6 +54,6 @@
   </div>
 
 </div>
-<div *ngIf="!blogs.length">
+<div *ngIf="(blogs$|async)">
 <p><i> No Blogs found!!</i></p>
 </div>

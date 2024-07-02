@@ -4,6 +4,9 @@ import { Blog } from '../Models/Blog';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Toggle } from '../State/Actions/dummy.actions';
+import { AppState } from '../State';
+import { dummyparagraphSelector } from '../State/Selectors/dummy.selector';
 
 @Component({
   selector: 'app-my-blogs',
@@ -15,12 +18,12 @@ import { Store } from '@ngrx/store';
 export class MyBlogsComponent implements OnInit {
   blogs:Blog[]=[]
   
-  constructor(private blogServices:BlogService, private store:Store<any>){ }
-  showParagraph$=this.store.select(state=>state.dummy.showParagraph)
+  constructor(private blogServices:BlogService, private store:Store<AppState>){ }
+  showParagraph$=this.store.select(dummyparagraphSelector)
   count$= this.store.select(state=>state.counter.count)
   onChange(){
     // this.showParagraph= !this.showParagraph
-    this.store.dispatch({type:'Toggle'})
+    this.store.dispatch(Toggle())
   }
   ngOnInit(): void {
     this.blogServices.getmyBlogs().subscribe(res=>{

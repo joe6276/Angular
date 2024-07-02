@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { BlogService } from '../Services/blog.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../State';
+import { BlogActions } from '../State/Actions/blog.actions';
 
 @Component({
   selector: 'app-add-blog',
@@ -13,7 +16,7 @@ import { BlogService } from '../Services/blog.service';
 })
 export class AddBlogComponent  implements OnInit{
 form!:FormGroup
-  constructor(private fb:FormBuilder, private blogService:BlogService, private router:Router){}
+  constructor(private fb:FormBuilder, private store:Store<AppState>, private router:Router){}
   ngOnInit(): void {
     this.form= this.fb.group({
       Heading:this.fb.control(null, Validators.required),
@@ -23,9 +26,11 @@ form!:FormGroup
   }
 
   onSubmit(){
-    this.blogService.addBlog(this.form.value).subscribe(res=>{
-      console.log(res.message);
-      this.router.navigate(['/blogs'])
-    })
+    // this.blogService.addBlog(this.form.value).subscribe(res=>{
+    //   console.log(res.message);
+    //   this.router.navigate(['/blogs'])
+    // })
+
+    this.store.dispatch(BlogActions.add({newblog:this.form.value}))
   }
 }

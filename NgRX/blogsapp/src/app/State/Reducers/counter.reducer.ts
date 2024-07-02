@@ -1,6 +1,6 @@
 import { createAction, createReducer, on } from "@ngrx/store";
 
-interface CounterInterface{
+export interface CounterInterface{
     count:number
 }
 
