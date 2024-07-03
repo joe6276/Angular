@@ -1,0 +1,33 @@
+<div class="app">
+              
+
+  <div class="item" *ngFor="let car of cars">
+      <img src={{car.image}} alt="">
+      <h1>{{car.title}}</h1>
+      <p>{{car.price |currency}}</p>
+      <button (click)="addToCart(car.id)" >Buy</button>
+  </div> 
+  </div>
+
+  <div class="cart" *ngIf="productService.quantity()>0">
+    <div *ngFor="let item of productService.cart()">
+      <div>
+        <p>{{item.title}}</p>
+        <button (click)="removeItem(item.id)"> X </button>
+      </div>
+      <hr>
+    </div>
+    <h1>Items in the Carts ({{productService.quantity()}})</h1>
+    <hr>
+    <p>Delivery Fee: {{productService.deliveryFee() |currency}}</p>
+
+    <p>Sub Total: {{productService.subTotal() |currency}}</p>
+
+    <p>Tax: {{productService.tax() |currency}}</p>
+
+    <h1>Total: {{productService.total() |currency}}</h1>
+
+
+  </div>
+
+
